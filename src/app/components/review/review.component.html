@@ -1,0 +1,43 @@
+<div class="review" *ngIf="attempt">
+  <h2>Обзор попытки</h2>
+  <p>Результат: {{ attempt.score }} / {{ attempt.total }}</p>
+
+  <div *ngFor="let ans of attempt.answers; let i = index">
+    <div class="card" *ngIf="mapQ[ans.questionId] as q">
+      <p>
+        <strong>Вопрос {{ i + 1 }}:</strong> {{ q.text }}
+      </p>
+      <p>Ваш ответ: {{ q.options[ans.chosen] || '—' }}</p>
+      <p>Правильный ответ: {{ q.options[q.correct] || '—' }}</p>
+    </div>
+  </div>
+
+  <div class="study" *ngIf="attempt.weakTopics?.length">
+    <h3>Рекомендуем подтянуть темы</h3>
+    <div class="study-item" *ngFor="let t of attempt.weakTopics">
+      <h4>{{ t }}</h4>
+
+      <ng-container *ngIf="topicInfo[t] as info">
+        <div *ngIf="info.theoryLink">
+          <a [href]="info.theoryLink" target="_blank">Теория по теме</a>
+        </div>
+
+        <div class="study-task" *ngIf="info.task">
+          <p><strong>Задача:</strong> {{ info.task }}</p>
+
+          <button
+            class="study-button"
+            *ngIf="info.hint"
+            (click)="toggleHint(t)"
+          >
+            {{ hintVisibleByTopic[t] ? 'Скрыть решение' : 'Показать решение' }}
+          </button>
+
+          <pre *ngIf="info.hint && hintVisibleByTopic[t]">{{ info.hint }}</pre>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <button class="review-button" (click)="toDashboard()">На главную</button>
+</div>

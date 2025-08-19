@@ -1,0 +1,36 @@
+<div class="login">
+  <h2>Вход</h2>
+  <form (ngSubmit)="loginEmail()">
+    <div class="form-input">
+      <label for="email">Email</label>
+      <input
+        [(ngModel)]="email"
+        name="email"
+        id="email"
+        required
+        type="email"
+        autocomplete="username"
+      />
+    </div>
+
+    <div class="form-input">
+      <label for="password">Пароль</label>
+      <input
+        [(ngModel)]="password"
+        name="password"
+        id="password"
+        required
+        type="password"
+        autocomplete="current-password"
+      />
+    </div>
+
+    <button class="login-button" type="submit">Войти</button>
+  </form>
+
+  <span>Нет аккаунта?</span>
+
+  <a (click)="goRegister()">Зарегистрироваться</a>
+  <hr />
+  <button class="login-button" (click)="close()">Закрыть</button>
+</div>

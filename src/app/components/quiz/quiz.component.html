@@ -1,0 +1,40 @@
+<div class="quiz" *ngIf="!finished && current">
+  <h3>{{ current.q.text }}</h3>
+
+  <div *ngFor="let opt of current.q.options; let i = index">
+    <label class="option">
+      <input type="radio" name="answer" [(ngModel)]="chosen" [value]="i" />
+      {{ opt }}
+    </label>
+  </div>
+
+  <div class="buttons">
+    <button class="quiz-button" (click)="answer()" [disabled]="chosen === null">
+      Ответить
+    </button>
+    <button class="quiz-button" (click)="finishEarly()">Прервать тест</button>
+  </div>
+</div>
+
+<div class="quiz" *ngIf="finished">
+  <h3>Тест завершён</h3>
+  <p>Правильных ответов: {{ score }} из {{ answers.length }}</p>
+
+  <ng-template #guest>
+    <p>
+      Авторизация отсутствует... Увы, доступен только результат без сохранения.
+    </p>
+  </ng-template>
+
+  <div class="buttons">
+    <ng-container *ngIf="user$ | async as u; else guest">
+      <button class="quiz-button" (click)="saveAndOpen(u.uid)">
+        Сохранить и открыть обзор
+      </button>
+    </ng-container>
+
+    <button class="quiz-button" (click)="finishEarly()">
+      Выйти без сохранения
+    </button>
+  </div>
+</div>

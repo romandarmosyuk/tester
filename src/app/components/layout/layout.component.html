@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <header class="header">
+    <a class="logo" routerLink="/dashboard">tester.</a>
+    <div class="auth">
+      <ng-container *ngIf="userId; else guest">
+        <span class="name" *ngIf="username; else emailTpl">{{ username }}</span>
+        <ng-template #emailTpl>
+          <span>{{ email }}</span>
+        </ng-template>
+        <div class="link-wrapper">
+          <a class="link" routerLink="/profile">Личный кабинет</a>
+        </div>
+      </ng-container>
+      <ng-template #guest>
+        <div class="link-wrapper">
+          <a class="link" routerLink="/login">Войти</a>
+        </div>
+      </ng-template>
+    </div>
+  </header>
+  <main class="main">
+    <router-outlet></router-outlet>
+  </main>
+</div>

@@ -1,0 +1,50 @@
+<div class="register">
+  <h2>Регистрация</h2>
+  <form (ngSubmit)="register()">
+    <div class="register-form">
+      <label for="name">Имя</label>
+      <input [(ngModel)]="name" name="name" id="name" required />
+    </div>
+
+    <div class="register-form">
+      <label for="email">Email</label>
+      <input
+        [(ngModel)]="email"
+        name="email"
+        id="email"
+        required
+        type="email"
+        autocomplete="email"
+      />
+    </div>
+
+    <div class="register-form">
+      <label for="password">Пароль</label>
+      <input
+        [(ngModel)]="password"
+        name="password"
+        id="password"
+        required
+        type="password"
+        autocomplete="new-password"
+      />
+    </div>
+
+    <div class="register-form">
+      <label for="password2">Повторите пароль</label>
+      <input
+        [(ngModel)]="password2"
+        name="password2"
+        id="password2"
+        required
+        type="password"
+        autocomplete="new-password"
+      />
+    </div>
+
+    <button class="register-button" type="submit">Зарегистрироваться</button>
+  </form>
+
+  <hr />
+  <button class="register-button" (click)="close()">Закрыть</button>
+</div>
