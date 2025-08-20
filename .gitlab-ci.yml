@@ -30,7 +30,7 @@ validate_code:
 pages:
   stage: deploy
   script:
-    - mv dist/course-work/browser public
+    - mv dist/course-work/browser/* public/
   artifacts:
     paths:
       - public
