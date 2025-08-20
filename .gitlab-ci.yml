@@ -1,0 +1,38 @@
+image: node:20
+
+stages:
+  - install
+  - build
+  - validate
+  - deploy
+
+install_dependencies:
+  stage: install
+  script:
+    - npm ci
+  artifacts:
+    paths:
+      - node_modules/
+
+build_app:
+  stage: build
+  script:
+    - npm run build -- --configuration=production
+  artifacts:
+    paths:
+      - dist/course-work
+
+validate_code:
+  stage: validate
+  script:
+    - npm run validate
+
+pages:
+  stage: deploy
+  script:
+    - mv dist/course-work/browser public
+  artifacts:
+    paths:
+      - public
+  only:
+    - develop
