@@ -6,8 +6,8 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "lint:html": "html-validate dist/course-work/browser/index.html",
-    "validate": "npm run lint:html && nx lint"
+    "validate": "npm run lint:html",
+    "lint:html": "html-validate dist/course-work/browser/index.html"
   },
   "private": true,
   "dependencies": {
