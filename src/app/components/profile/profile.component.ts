@@ -17,8 +17,6 @@ export class ProfileComponent implements OnInit {
   attempts: Attempt[] = [];
   userId: string | null = null;
   email: string | null = null;
-  username = '';
-  editingName = false;
 
   constructor(
     private backend: BackendService,
@@ -37,8 +35,6 @@ export class ProfileComponent implements OnInit {
       this.userId = user.uid;
       this.email = user.email;
 
-      this.username = await this.backend.getUsername(this.userId);
-
       const list = await this.backend.getAttempts(this.userId);
       this.attempts = list.sort((a, b) => b.createdAt - a.createdAt);
     });
@@ -46,13 +42,6 @@ export class ProfileComponent implements OnInit {
 
   formatDate(timestamp: number): string {
     return new Date(timestamp).toLocaleString();
-  }
-
-  async saveUsername() {
-    if (this.userId && this.username.trim()) {
-      await this.backend.saveUsername(this.userId, this.username.trim());
-      this.editingName = false;
-    }
   }
 
   viewAttempt(id: string) {

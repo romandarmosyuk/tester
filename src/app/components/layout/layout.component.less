@@ -1,5 +1,7 @@
 .wrapper {
-  margin: 1rem 2.5rem;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 1rem 2.5rem;
   height: 100%;
   height: 100vh;
 }
@@ -8,6 +10,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 
   .logo {
     font-size: 8rem;
@@ -21,14 +25,10 @@
     align-items: center;
     gap: 1rem;
 
-    .link-wrapper {
+    .link {
       background-color: #fff;
       padding: 0.8rem 1.6rem;
       border-radius: 1rem;
-    }
-
-    .link,
-    .name {
       color: inherit;
       font-size: 1.75rem;
       font-weight: 400;

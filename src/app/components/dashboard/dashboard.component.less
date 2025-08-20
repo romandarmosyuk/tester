@@ -6,11 +6,29 @@
 
   .card {
     display: flex;
-    align-items: flex-end;
-    height: 20rem;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1rem;
+    min-height: 20rem;
     background-color: #fff;
     border-radius: 16px;
     padding: 2rem;
+  }
+
+  .card-img {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .test,
+  .happy {
+    width: 100px;
+    height: auto;
+  }
+
+  .study {
+    width: 200px;
+    height: auto;
   }
 
   .card span {
@@ -40,4 +58,44 @@
   background-color: #e9e8e8d9;
   border-radius: 16px;
   padding: 1.5rem 5rem;
+}
+
+@media (max-width: 768px) {
+  .info {
+    .test,
+    .happy {
+      width: 50px;
+      height: auto;
+    }
+
+    .study {
+      width: 100px;
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .info {
+    max-width: 100%;
+
+    .test,
+    .happy {
+      width: 100px;
+      height: auto;
+    }
+
+    .study {
+      width: 200px;
+      height: auto;
+    }
+  }
+
+  .start {
+    background-color: #e9e8e8d9;
+
+    .start-button {
+      background-color: #fff;
+    }
+  }
 }

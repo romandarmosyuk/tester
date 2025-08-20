@@ -3,22 +3,6 @@
 <div class="profile-info" *ngIf="userId; else guest">
   <p><strong>Email:</strong> {{ email }}</p>
 
-  <div class="username">
-    <ng-container *ngIf="!editingName; else editName">
-      <p><strong>Имя:</strong> {{ username || 'Не указано' }}</p>
-      <button class="profile-button" (click)="editingName = true">
-        Редактировать имя
-      </button>
-    </ng-container>
-
-    <ng-template #editName>
-      <input [(ngModel)]="username" placeholder="Введите имя" name="username" />
-      <button class="profile-button" (click)="saveUsername()">Сохранить</button>
-      <button class="profile-button" (click)="editingName = false">
-        Отмена
-      </button>
-    </ng-template>
-  </div>
   <button class="profile-button" (click)="logout()">Выйти</button>
 
   <h3>История попыток:</h3>

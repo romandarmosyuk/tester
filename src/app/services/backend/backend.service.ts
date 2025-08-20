@@ -11,7 +11,6 @@ import {
   DocumentData,
 } from '@angular/fire/firestore';
 import { Attempt, Question } from '../../models/models';
-import { setDoc } from 'firebase/firestore';
 
 @Injectable({ providedIn: 'root' })
 export class BackendService {
@@ -67,16 +66,5 @@ export class BackendService {
       const data = d.data() as Omit<Attempt, 'id'>;
       return { id: d.id, ...data };
     });
-  }
-
-  async saveUsername(userId: string, username: string): Promise<void> {
-    const ref = doc(this.firestore, `users/${userId}`);
-    await setDoc(ref, { username }, { merge: true });
-  }
-
-  async getUsername(userId: string): Promise<string> {
-    const ref = doc(this.firestore, `users/${userId}`);
-    const snap = await getDoc(ref);
-    return snap.exists() ? (snap.data()['username'] as string) ?? '' : '';
   }
 }

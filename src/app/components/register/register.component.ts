@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./register.component.less'],
 })
 export class RegisterComponent {
-  name = '';
   email = '';
   password = '';
   password2 = '';

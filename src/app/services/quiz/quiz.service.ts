@@ -55,7 +55,7 @@ export class QuizService {
   getNext(): QWithFlag | null {
     if (this.pendingExtras.length > 0) {
       const q = this.pendingExtras.shift();
-      if (!q) return null; // защита от undefined
+      if (!q) return null;
       if (q.id) this.used.add(q.id);
       return { q, isExtra: true };
     }
@@ -70,8 +70,7 @@ export class QuizService {
   }
 
   handleAnswer(q: Question, chosen: number, isExtra: boolean): boolean {
-    const chosenIdx = Number(chosen);
-    const correct = q.correct === chosenIdx;
+    const correct = q.correct === chosen;
     const topic = q.topic;
 
     if (isExtra) {

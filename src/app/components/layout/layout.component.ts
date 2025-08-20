@@ -27,12 +27,16 @@ export class LayoutComponent implements OnInit {
       if (user) {
         this.userId = user.uid;
         this.email = user.email ?? '';
-        this.username = await this.backend.getUsername(user.uid);
       } else {
         this.userId = null;
         this.email = '';
         this.username = '';
       }
     });
+  }
+
+  isAuthPage(): boolean {
+    const url = this.router.url;
+    return url.includes('/login') || url.includes('/register');
   }
 }

@@ -3,16 +3,10 @@
     <a class="logo" routerLink="/dashboard">tester.</a>
     <div class="auth">
       <ng-container *ngIf="userId; else guest">
-        <span class="name" *ngIf="username; else emailTpl">{{ username }}</span>
-        <ng-template #emailTpl>
-          <span>{{ email }}</span>
-        </ng-template>
-        <div class="link-wrapper">
-          <a class="link" routerLink="/profile">Личный кабинет</a>
-        </div>
+        <a class="link" routerLink="/profile">Личный кабинет</a>
       </ng-container>
       <ng-template #guest>
-        <div class="link-wrapper">
+        <div class="link-wrapper" *ngIf="!isAuthPage()">
           <a class="link" routerLink="/login">Войти</a>
         </div>
       </ng-template>

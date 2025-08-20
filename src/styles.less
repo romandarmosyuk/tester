@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -30,6 +31,10 @@ button {
   cursor: pointer;
 }
 
+app-layout {
+  margin: 0 auto;
+}
+
 app-dashboard {
   display: flex;
   gap: 15px;
@@ -47,4 +52,16 @@ app-profile {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  app-dashboard {
+    flex-direction: column;
+  }
 }
