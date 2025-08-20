@@ -9,7 +9,7 @@ stages:
 install_dependencies:
   stage: install
   script:
-    - npm ci
+    - npm install
   artifacts:
     paths:
       - node_modules/
