@@ -13,6 +13,6 @@ export class DashboardComponent {
   constructor(private router: Router) {}
 
   startQuiz() {
-    this.router.navigate(['/quiz', 'arrays']);
+    this.router.navigate(['/quiz']);
   }
 }

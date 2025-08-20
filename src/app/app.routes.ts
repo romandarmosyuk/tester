@@ -15,7 +15,7 @@ export const appRoutes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
 
-      { path: 'quiz', redirectTo: 'quiz/arrays', pathMatch: 'full' },
+      { path: 'quiz', component: QuizComponent },
 
       { path: 'quiz/:topicId', component: QuizComponent },
 
