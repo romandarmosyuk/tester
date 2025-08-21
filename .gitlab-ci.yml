@@ -4,6 +4,7 @@ stages:
   - install
   - build
   - validate
+  - test
   - deploy
 
 install_dependencies:
@@ -26,6 +27,11 @@ validate_code:
   stage: validate
   script:
     - npm run validate
+
+unit_tests:
+  stage: test
+  script:
+    - npm run test -- --ci
 
 pages:
   stage: deploy

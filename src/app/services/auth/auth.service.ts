@@ -10,7 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private userSubject = new BehaviorSubject<User | null>(null);
+  private userSubject = new BehaviorSubject<User | null | undefined>(undefined);
   user$ = this.userSubject.asObservable();
 
   constructor(private auth: Auth) {
@@ -34,7 +34,9 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return !!this.userSubject.value;
+    const logged = !!this.userSubject.value;
+    console.log('[AuthService] isLoggedIn →', logged);
+    return logged;
   }
 
   get currentUser() {

@@ -3,7 +3,11 @@
   <p>Результат: {{ attempt.score }} / {{ attempt.total }}</p>
 
   <div *ngFor="let ans of attempt.answers; let i = index">
-    <div class="card" *ngIf="mapQ[ans.questionId] as q">
+    <div
+      class="card"
+      *ngIf="mapQ[ans.questionId] as q"
+      [ngClass]="ans.correct ? 'correct' : 'wrong'"
+    >
       <p>
         <strong>Вопрос {{ i + 1 }}:</strong> {{ q.text }}
       </p>

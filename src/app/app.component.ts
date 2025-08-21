@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
   imports: [RouterModule],
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.less',
+  styleUrls: ['./app.component.less'],
 })
 export class AppComponent {
   title = 'course-work';

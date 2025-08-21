@@ -16,6 +16,15 @@ export class QuizService {
   private used: Set<string> = new Set();
   public weakTopics: Set<string> = new Set();
 
+  private shuffle<T>(arr: T[]): T[] {
+    const copy = [...arr];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
   bootstrap(questions: Question[]) {
     const byTopic = new Map<string, Question[]>();
     for (const q of questions) {
@@ -29,9 +38,7 @@ export class QuizService {
       }
     }
 
-    const topics = Array.from(byTopic.keys()).sort((a, b) =>
-      a.localeCompare(b)
-    );
+    const topics = this.shuffle(Array.from(byTopic.keys()));
 
     this.baseQueue = [];
     this.extraPools.clear();
@@ -39,8 +46,9 @@ export class QuizService {
       const arr = byTopic.get(t);
       if (!arr || arr.length === 0) continue;
 
-      const [first, ...rest] = arr;
-      this.baseQueue.push(first);
+      const shuffled = this.shuffle(arr);
+      const [main, ...rest] = shuffled;
+      this.baseQueue.push(main);
       this.extraPools.set(t, rest);
     }
 
@@ -92,7 +100,8 @@ export class QuizService {
       const candidates = pool.filter((x) =>
         x.id ? !this.used.has(x.id) : true
       );
-      const extras = candidates.slice(0, 2);
+
+      const extras = this.shuffle(candidates).slice(0, 2);
 
       if (extras.length > 0) {
         this.pendingExtras.push(...extras);

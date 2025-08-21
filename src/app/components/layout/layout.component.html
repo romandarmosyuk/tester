@@ -2,16 +2,24 @@
   <header class="header">
     <a class="logo" routerLink="/dashboard">tester.</a>
     <div class="auth">
-      <ng-container *ngIf="userId; else guest">
-        <a class="link" routerLink="/profile">Личный кабинет</a>
+      <ng-container [ngSwitch]="user$ | async">
+        <ng-container *ngSwitchCase="undefined">
+          <div></div>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="null">
+          <div class="link-wrapper" *ngIf="!isAuthPage()">
+            <a class="link" routerLink="/login">Войти</a>
+          </div>
+        </ng-container>
+
+        <ng-container *ngSwitchDefault>
+          <a class="link" routerLink="/profile">Личный кабинет</a>
+        </ng-container>
       </ng-container>
-      <ng-template #guest>
-        <div class="link-wrapper" *ngIf="!isAuthPage()">
-          <a class="link" routerLink="/login">Войти</a>
-        </div>
-      </ng-template>
     </div>
   </header>
+
   <main class="main">
     <router-outlet></router-outlet>
   </main>

@@ -1,38 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { Auth } from '@angular/fire/auth';
-import { BackendService } from 'src/app/services/backend/backend.service';
+import { CommonModule, NgIf } from '@angular/common';
+import { User } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink],
+  imports: [CommonModule, RouterOutlet, RouterLink, NgIf],
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.less'],
 })
-export class LayoutComponent implements OnInit {
-  username = '';
-  email = '';
-  userId: string | null = null;
+export class LayoutComponent {
+  user$: Observable<User | null | undefined>;
 
-  constructor(
-    private auth: Auth,
-    private backend: BackendService,
-    private router: Router
-  ) {}
-
-  async ngOnInit() {
-    this.auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        this.userId = user.uid;
-        this.email = user.email ?? '';
-      } else {
-        this.userId = null;
-        this.email = '';
-        this.username = '';
-      }
-    });
+  constructor(private auth: AuthService, private router: Router) {
+    this.user$ = this.auth.user$;
   }
 
   isAuthPage(): boolean {

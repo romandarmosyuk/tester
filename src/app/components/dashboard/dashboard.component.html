@@ -1,26 +1,71 @@
-<aside class="info">
-  <div class="card">
-    <div class="card-img">
-      <img class="test" src="/test.gif" alt="test" />
-      <img class="test" src="/student.gif" alt="test" />
+<ng-container [ngSwitch]="user$ | async">
+  <ng-container *ngSwitchCase="undefined">
+    <div>Загрузка...</div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="null">
+    <aside class="info">
+      <div class="card">
+        <div class="card-img">
+          <img class="test" src="/test.gif" alt="test" />
+          <img class="test" src="/student.gif" alt="student" />
+        </div>
+        <span>проходи тест без регистрации</span>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img class="study" src="/study.gif" alt="study" />
+        </div>
+        <span
+          >хочешь анализ, теорию и задачи? Сначала войди в личный кабинет</span
+        >
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img class="happy" src="/happy.gif" alt="happy" />
+        </div>
+        <span>развивайся шаг за шагом и радуйся прогрессу! 🚀</span>
+      </div>
+    </aside>
+
+    <div class="start">
+      <button class="start-button" (click)="startQuiz()">
+        Начать тестирование
+      </button>
     </div>
-    <span>проходи тест без регистрации</span>
-  </div>
-  <div class="card">
-    <div class="card-img">
-      <img class="study" src="/study.gif" alt="test" />
+  </ng-container>
+
+  <ng-container *ngSwitchDefault>
+    <aside class="info">
+      <div class="card">
+        <div class="card-img">
+          <img class="test" src="/test.gif" alt="test" />
+          <img class="test" src="/student.gif" alt="student" />
+        </div>
+        <span>проходи тест</span>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img class="study" src="/study1.gif" alt="study" />
+        </div>
+        <span>изучи теорию и реши задачи при ошибках</span>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img class="happy" src="/happy.gif" alt="happy" />
+        </div>
+        <span>развивайся шаг за шагом и радуйся прогрессу! 🚀</span>
+      </div>
+    </aside>
+
+    <div class="start">
+      <button class="start-button" (click)="startQuiz()">
+        Начать тестирование
+      </button>
     </div>
-    <span>хочешь анализ, теорию и задачи? Сначала войди в личный кабинет</span>
-  </div>
-  <div class="card">
-    <div class="card-img">
-      <img class="happy" src="/happy.gif" alt="test" />
-    </div>
-    <span>развивайся шаг за шагом и радуйся прогрессу! 🚀</span>
-  </div>
-</aside>
-<div class="start">
-  <button class="start-button" (click)="startQuiz()">
-    Начать тестирование
-  </button>
-</div>
+  </ng-container>
+</ng-container>

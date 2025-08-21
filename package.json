@@ -6,7 +6,8 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "validate": "npm run lint:html",
+    "lint": "nx lint",
+    "validate": "npm run lint && npm run lint:html",
     "lint:html": "html-validate dist/course-work/browser/index.html"
   },
   "private": true,
@@ -47,7 +48,7 @@
     "@types/node": "18.16.9",
     "@typescript-eslint/utils": "^8.0.0",
     "angular-eslint": "^18.3.0",
-    "eslint": "^9.8.0",
+    "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.0.0",
     "html-validate": "^10.0.0",
     "jest": "^29.7.0",
@@ -59,7 +60,7 @@
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
     "typescript": "~5.5.2",
-    "typescript-eslint": "^8.0.0"
+    "typescript-eslint": "^7.18.0"
   },
   "nx": {
     "includedScripts": []

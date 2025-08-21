@@ -1,7 +1,7 @@
 <h2>Личный кабинет</h2>
 
-<div class="profile-info" *ngIf="userId; else guest">
-  <p><strong>Email:</strong> {{ email }}</p>
+<div class="profile-info" *ngIf="user$ | async as user">
+  <p><strong>Email:</strong> {{ user.email }}</p>
 
   <button class="profile-button" (click)="logout()">Выйти</button>
 
@@ -16,7 +16,3 @@
     </li>
   </ul>
 </div>
-
-<ng-template #guest>
-  <p>Вы не авторизованы. <a routerLink="/login">Войти</a></p>
-</ng-template>
