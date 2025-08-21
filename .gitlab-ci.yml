@@ -36,7 +36,9 @@ unit_tests:
 pages:
   stage: deploy
   script:
-    - mv dist/course-work/browser/* public/
+    - rm -rf public
+    - mkdir public
+    - cp -r dist/course-work/browser/* public/
   artifacts:
     paths:
       - public
